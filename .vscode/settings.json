@@ -1,0 +1,36 @@
+{
+  // ❌ 关闭 ESLint（关键）
+  "eslint.enable": false,
+
+  // ❌ JS/TS 内置提示（减少干扰）
+  "js/ts.validate.enabled": false,
+
+  // ✔ 搜索忽略（提升速度）
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/build": true,
+    "**/dist": true
+  },
+
+  // ✔ 文件树简化
+  "files.exclude": {
+    "**/.git": false,
+    "**/build": true,
+    "**/dist": true
+  },
+
+  // ✔ 更适合源码阅读
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+
+  // ✔ Markdown 自动修复（提升文档质量）
+  "editor.codeActionsOnSave": {
+    "source.fixAll.markdownlint": "explicit"
+  },
+
+  // ✔ Markdown 保存自动格式化（保持一致）
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+}
