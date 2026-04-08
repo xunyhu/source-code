@@ -33,4 +33,7 @@
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
   },
+
+  //  ❌ 关闭JavaScript 的错误提示
+  "javascript.validate.enable": false
 }

@@ -56,7 +56,7 @@ const HooksDispatcherOnUpdate = {
 };
 ```
 
-### 4️⃣ 所以真实调用的是：
+### 4️⃣ 所以真实调用的是
 
 首次渲染：useState → mountState
 
@@ -67,6 +67,7 @@ const HooksDispatcherOnUpdate = {
 核心代码（简化）：
 
 ```js
+// ReactFiberHooks.js
 function mountState(initialState) {
   const hook = mountWorkInProgressHook();
 
@@ -88,35 +89,46 @@ function mountState(initialState) {
 
 ### 🔥 核心点拆解
 
-####　1️⃣ hook 链表
+#### 　1️⃣ hook 链表
+
+```ts
 const hook = mountWorkInProgressHook();
+```
 
 👉 本质是：
 
+```js
 fiber.memoizedState = {
-memoizedState: xxx,
-next: nextHook
+  memoizedState: xxx,
+  next: nextHook
 }
+```
 
 👉 Hooks 是一个单向链表
 
 #### 2️⃣ 状态存储
 
+```ts
 hook.memoizedState = initialState;
+```
 
 👉 真正的 state 存在这里
 
 #### 3️⃣ queue（更新队列）
 
+```ts
 const queue = {
-pending: null
+  pending: null
 };
+```
 
 👉 用来存 setState 的更新
 
 #### 4️⃣ dispatch（关键）
 
+```ts
 const dispatch = dispatchSetState.bind(null, fiber, queue);
+```
 
 👉 setState 本质就是这个函数
 
@@ -124,11 +136,15 @@ const dispatch = dispatchSetState.bind(null, fiber, queue);
 
 当你调用：
 
+```ts
 setCount(1);
+```
 
 其实执行的是：
 
+```ts
 dispatchSetState(fiber, queue, action)
+```
 
 核心逻辑：
 
